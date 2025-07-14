@@ -1,8 +1,8 @@
-package com.example.Ecommerce.auth.services;
+package com.example.Ecommerce.auth.Services;
 
 
 import com.example.Ecommerce.auth.AuthRepo.UserDetailRepo;
-import com.example.Ecommerce.auth.authticationEntities.User;
+import com.example.Ecommerce.auth.AuthticationEntities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomUserDetailService implements UserDetailsService {
+public class UserDetailService implements UserDetailsService {
 
     @Autowired
     private UserDetailRepo userDetailRepository;

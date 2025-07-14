@@ -1,7 +1,6 @@
 //package com.example.Ecommerce.auth.services;
 //
-//import com.thecodereveal.shopease.auth.entities.User;
-//import com.thecodereveal.shopease.auth.repositories.UserDetailRepository;
+
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.oauth2.core.user.OAuth2User;
 //import org.springframework.stereotype.Service;

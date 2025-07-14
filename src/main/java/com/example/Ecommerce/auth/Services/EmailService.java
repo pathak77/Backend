@@ -1,6 +1,6 @@
 //package com.example.Ecommerce.auth.services;
 //
-//import com.thecodereveal.shopease.auth.entities.User;
+
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.mail.SimpleMailMessage;
