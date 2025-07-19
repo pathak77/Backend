@@ -1,10 +1,11 @@
-package com.example.Ecommerce.auth.services;
+package com.example.Ecommerce.auth.Services;
 
 
 import com.example.Ecommerce.auth.AuthRepo.UserDetailRepo;
 import com.example.Ecommerce.auth.AuthticationEntities.User;
 import com.example.Ecommerce.auth.Dto.RegistrationRequest;
 import com.example.Ecommerce.auth.Dto.RegistrationResponse;
+import com.example.Ecommerce.auth.Verification.VerificationCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,9 @@ public class RegistrationService {
 
     public RegistrationResponse createUser(RegistrationRequest request) {
 
-        User existing = userDetailRepo.findByEmail(request.getEmail());
+        User  userExists = userDetailRepo.findByEmail(request.getEmail());
 
-        if(null != existing){
+        if(userExists != null){
             return  RegistrationResponse.builder()
                     .code(400)
                     .message("Email already exist!")
@@ -46,7 +47,7 @@ public class RegistrationService {
             user.setPassword(passwordEncoder.encode(request.getPassword()));
             user.setProvider("manual");
 
-            String code = VerificationCodeGenerator.generateCode();
+            String code  = VerificationCodeGenerator.generateCode();
 
             user.setVerificationCode(code);
             user.setAuthorities(authorityService.getUserAuthority());

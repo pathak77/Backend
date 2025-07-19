@@ -1,4 +1,4 @@
-package com.thecodereveal.shopease.auth.config;
+package com.example.Ecommerce.auth.JwtHelper;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

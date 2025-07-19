@@ -3,10 +3,12 @@ package com.example.Ecommerce.auth.Controller;
 
 import com.example.Ecommerce.auth.AuthticationEntities.User;
 import com.example.Ecommerce.auth.Dto.LoginRequest;
+import com.example.Ecommerce.auth.Dto.RegistrationRequest;
+import com.example.Ecommerce.auth.Dto.RegistrationResponse;
 import com.example.Ecommerce.auth.Dto.UserToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import com.example.Ecommerce.auth.services.RegistrationService;
+import com.example.Ecommerce.auth.Services.RegistrationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

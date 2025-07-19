@@ -21,7 +21,9 @@ public class AuthorityService {
     }
 
     public Authority createAuthority(String role, String description){
-        Authority authority= Authority.builder().roleCode(role).roleDescription(description).build();
+        Authority authority = Authority.builder()
+                .role(role)
+                .build();
         return authorityRepo.save(authority);
     }
 }
