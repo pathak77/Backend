@@ -24,8 +24,6 @@ public class Authority implements GrantedAuthority {
     @Column(nullable = false)
     private String role;
 
-    @Column(nullable = false)
-    private String roleDescription;
 
     @Override
     public String getAuthority() {

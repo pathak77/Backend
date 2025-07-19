@@ -1,8 +1,12 @@
 package com.example.Ecommerce.auth.Controller;
 
 
+import com.example.Ecommerce.auth.AuthticationEntities.User;
+import com.example.Ecommerce.auth.Dto.LoginRequest;
+import com.example.Ecommerce.auth.Dto.UserToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import com.example.Ecommerce.auth.services.RegistrationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -34,7 +38,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<UserToken> login(@RequestBody LoginRequest loginRequest){
         try{
-            Authentication authentication= UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.getUserName(),
+            Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.getUserName(),
                     loginRequest.getPassword());
 
             Authentication authenticationResponse = this.authenticationManager.authenticate(authentication);
@@ -71,7 +75,7 @@ public class AuthController {
         String code = map.get("code");
 
         User user= (User) userDetailsService.loadUserByUsername(userName);
-        if(null != user && user.getVerificationCode().equals(code)){
+        if(user != null && user.getVerificationCode().equals(code)){
             registrationService.verifyUser(userName);
             return new ResponseEntity<>(HttpStatus.OK);
         }
