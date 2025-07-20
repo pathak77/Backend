@@ -2,12 +2,12 @@ package com.example.Ecommerce.auth.Controller;
 
 
 
+import com.example.Ecommerce.auth.AuthticationEntities.User;
 import com.example.Ecommerce.auth.Dto.UserDataDto;
 import com.example.Ecommerce.auth.Services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +35,7 @@ public class UserDetailController {
                 .lastName(user.getLastName())
                 .email(user.getEmail())
                 .id(user.getId())
-                .phoneNumber(user.getPhoneNumber())
+                .phoneNumber(user.getPhone())
                 .addressList(user.getAddressList())
                 .authorityList(user.getAuthorities().toArray()).build();
 

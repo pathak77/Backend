@@ -4,7 +4,6 @@ package com.example.Ecommerce.auth.Services;
 import com.example.Ecommerce.auth.AuthRepo.UserDetailRepo;
 import com.example.Ecommerce.auth.AuthticationEntities.User;
 import com.example.Ecommerce.auth.Dto.RegistrationRequest;
-import com.example.Ecommerce.auth.Dto.RegistrationResponse;
 import com.example.Ecommerce.auth.Verification.VerificationCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,15 +25,12 @@ public class RegistrationService {
     @Autowired
     private EmailService emailService;
 
-    public RegistrationResponse createUser(RegistrationRequest request) {
+    public String createUser(RegistrationRequest request) {
 
         User  userExists = userDetailRepo.findByEmail(request.getEmail());
 
         if(userExists != null){
-            return  RegistrationResponse.builder()
-                    .code(400)
-                    .message("Email already exist!")
-                    .build();
+            return  new String("the account already exists!");
         }
 
         try{
@@ -55,11 +51,7 @@ public class RegistrationService {
             emailService.sendMail(user);
 
 
-            return RegistrationResponse.builder()
-                    .code(200)
-                    .message("User created!")
-                    .build();
-
+            return "User created!";
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -1,4 +1,4 @@
-package com.example.Ecommerce.auth.JwtHelper;
+package com.example.Ecommerce.auth.JwtConfig;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -15,22 +15,26 @@ import java.util.Date;
 @Component
 public class JWTTokenHelper {
 
-    @Value("${jwt.auth.app}")
+    @Value("${jwt.application.name}")
     private String appName;
 
-    @Value("${jwt.auth.secret_key}")
+    @Value("${security.jwt.secret-key}")
     private String secretKey;
 
-    @Value("${jwt.auth.expires_in}")
-    private int expiresIn;
+    @Value("${security.jwt.expiration-time}")
+    private int expiration;
 
     public String generateToken(String userName){
+        return generateToken(userName, generateExpirationDate(), getSigningKey());
+    }
+
+    private String generateToken( String userName, Date expiration, Key signingKey ){
         return Jwts.builder()
                 .issuer(appName)
                 .subject(userName)
                 .issuedAt(new Date())
-                .expiration(generateExpirationDate())
-                .signWith(getSigningKey())
+                .expiration(expiration)
+                .signWith(signingKey)
                 .compact();
     }
 
@@ -40,7 +44,7 @@ public class JWTTokenHelper {
     }
 
     private Date generateExpirationDate() {
-        return new Date(new Date().getTime() + expiresIn * 1000L);
+        return new Date(new Date().getTime() + expiration);
     }
 
     public String getToken( HttpServletRequest request ) {

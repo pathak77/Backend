@@ -4,7 +4,6 @@ package com.example.Ecommerce.auth.Controller;
 import com.example.Ecommerce.auth.AuthticationEntities.User;
 import com.example.Ecommerce.auth.Dto.LoginRequest;
 import com.example.Ecommerce.auth.Dto.RegistrationRequest;
-import com.example.Ecommerce.auth.Dto.RegistrationResponse;
 import com.example.Ecommerce.auth.Dto.UserToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,7 +50,7 @@ public class AuthController {
                     return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
                 }
 
-                String token =jwtTokenHelper.generateToken(user.getEmail());
+                String token = jwtTokenHelper.generateToken(user.getEmail());
                 UserToken userToken= UserToken.builder().token(token).build();
                 return new ResponseEntity<>(userToken,HttpStatus.OK);
             }
@@ -64,11 +63,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<RegistrationResponse> register(@RequestBody RegistrationRequest request){
-        RegistrationResponse registrationResponse = registrationService.createUser(request);
+    public ResponseEntity<String> register(@RequestBody RegistrationRequest request){
+        String registrationResponse = registrationService.createUser(request);
 
-        return new ResponseEntity<>(registrationResponse,
-                registrationResponse.getCode() == 200 ? HttpStatus.OK: HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(registrationResponse, HttpStatus.OK);
     }
 
     @PostMapping("/verify")

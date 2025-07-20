@@ -1,4 +1,4 @@
-package com.example.Ecommerce.auth.JwtHelper;
+package com.example.Ecommerce.auth.JwtConfig;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,8 +1,9 @@
 package com.example.Ecommerce.auth.Controller;
 
-import com.thecodereveal.shopease.auth.config.JWTTokenHelper;
-import com.thecodereveal.shopease.auth.entities.User;
-import com.thecodereveal.shopease.auth.services.OAuth2Service;
+
+import com.example.Ecommerce.auth.AuthticationEntities.User;
+import com.example.Ecommerce.auth.JwtConfig.JWTTokenHelper;
+import com.example.Ecommerce.auth.Services.OAuth2Service;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -29,8 +30,8 @@ public class OAuth2Controller {
     public void callbackOAuth2(@AuthenticationPrincipal OAuth2User oAuth2User, HttpServletResponse response) throws IOException {
 
         String userName = oAuth2User.getAttribute("email");
-        User user=oAuth2Service.getUser(userName);
-        if(null == user){
+        User  user = (User) oAuth2Service.getUser(userName);
+        if( user == null){
             user = oAuth2Service.createUser(oAuth2User,"google");
         }
 
