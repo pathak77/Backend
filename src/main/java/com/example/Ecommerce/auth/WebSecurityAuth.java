@@ -1,6 +1,7 @@
 package com.example.Ecommerce.auth;
 
 
+import com.example.Ecommerce.auth.Services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +10,6 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -19,19 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityAuth {
 
     @Autowired
-    UserDetailsService userDetailsService;
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .authorizeHttpRequests( requests -> requests
-                        .requestMatchers("/products/**","/categories/**").permitAll()
-                        .anyRequest()
-                        .authenticated())
-                        .build();
-    }
-
-
+    UserDetailService userDetailsService;
     @Bean
     public AuthenticationManager authenticationManager(){
         DaoAuthenticationProvider daoAuthenticationProvider= new DaoAuthenticationProvider();
@@ -41,6 +29,20 @@ public class WebSecurityAuth {
         return new ProviderManager(daoAuthenticationProvider);
 
     }
+
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .authorizeHttpRequests( requests -> requests
+                        .requestMatchers("/products/**","/categories/**", "/").permitAll()
+                        .anyRequest()
+                        .authenticated())
+                        .build();
+    }
+
+
+
 
 
     @Bean

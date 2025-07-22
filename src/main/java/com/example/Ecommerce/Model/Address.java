@@ -1,6 +1,7 @@
 package com.example.Ecommerce.Model;
 
 
+import com.example.Ecommerce.auth.AuthticationEntities.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +18,9 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long address_id;
 
-    private String username;
+    @ManyToOne
+    @JoinColumn(name = "id",nullable = false)
+    private User user;
 
     private String street;
     private String city;
