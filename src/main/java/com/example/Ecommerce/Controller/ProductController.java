@@ -34,6 +34,8 @@ public class ProductController {
             @RequestParam(required = false,name = "typeId",value = "typeId") UUID typeId,
             @RequestParam(required = false) String slug,
             HttpServletResponse response) throws Exception {
+
+        System.out.println("get all products i.e. /products api has been hit");
         List<ProductDto> productList = new ArrayList<>();
         if(StringUtils.isNotBlank(slug)){
             ProductDto productDto = productService.getProductBySlug(slug);

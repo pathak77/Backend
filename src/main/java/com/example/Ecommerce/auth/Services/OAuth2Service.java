@@ -27,7 +27,6 @@ public class OAuth2Service {
                 .firstName(firstName)
                 .lastName(lastName)
                 .email(email)
-                .provider(provider)
                 .enabled(true)
                 .authorities(authorityService.getUserAuthority())
                 .build();

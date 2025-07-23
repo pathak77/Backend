@@ -1,11 +1,11 @@
 package com.example.Ecommerce.auth.Controller;
 
-
 import com.example.Ecommerce.auth.AuthticationEntities.User;
 import com.example.Ecommerce.auth.Dto.LoginRequest;
 import com.example.Ecommerce.auth.Dto.RegistrationRequest;
 import com.example.Ecommerce.auth.Dto.UserToken;
 import com.example.Ecommerce.auth.JwtConfig.JWTTokenHelper;
+import com.example.Ecommerce.auth.Services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import com.example.Ecommerce.auth.Services.RegistrationService;
@@ -14,10 +14,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -31,7 +29,7 @@ public class AuthController {
     RegistrationService registrationService;
 
     @Autowired
-    UserDetailsService userDetailsService;
+    UserDetailService userDetailsService;
 
     @Autowired
     JWTTokenHelper jwtTokenHelper;
@@ -39,6 +37,8 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<UserToken> login(@RequestBody LoginRequest loginRequest){
+
+        System.out.println("Login request: " + loginRequest + " has been added");
         try{
             Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.getUserName(),
                     loginRequest.getPassword());
@@ -65,17 +65,18 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody RegistrationRequest request){
-        String registrationResponse = registrationService.createUser(request);
 
+        System.out.println("register endpoint hit!!!!!!!!!!!!!!!!!!");
+        String registrationResponse = registrationService.createUser(request);
         return new ResponseEntity<>(registrationResponse, HttpStatus.OK);
     }
 
-    @PostMapping("/verify")
-    public ResponseEntity<?> verifyCode(@RequestBody Map<String,String> map){
-        String userName = map.get("userName");
-        String code = map.get("code");
+    @GetMapping("/verify")
+    public ResponseEntity<?> verifyCode(@RequestParam (required = true, name= "name") String userName,
+                                        @RequestParam (required = true, name= "code") String code){
 
         User user= (User) userDetailsService.loadUserByUsername(userName);
+
         if(user != null && user.getVerificationCode().equals(code)){
             registrationService.verifyUser(userName);
             return new ResponseEntity<>(HttpStatus.OK);

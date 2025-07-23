@@ -1,6 +1,5 @@
 package com.example.Ecommerce.auth.Services;
 
-
 import com.example.Ecommerce.auth.AuthRepo.UserDetailRepo;
 import com.example.Ecommerce.auth.AuthticationEntities.User;
 import com.example.Ecommerce.auth.Dto.RegistrationRequest;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ServerErrorException;
 
 @Service
-public class RegistrationService {
+public class    RegistrationService {
 
     @Autowired
     private UserDetailRepo userDetailRepo;
@@ -41,15 +40,17 @@ public class RegistrationService {
             user.setEmail(request.getEmail());
             user.setEnabled(false);
             user.setPassword(passwordEncoder.encode(request.getPassword()));
-            user.setProvider("manual");
 
             String code  = VerificationCodeGenerator.generateCode();
 
             user.setVerificationCode(code);
             user.setAuthorities(authorityService.getUserAuthority());
             userDetailRepo.save(user);
-            emailService.sendMail(user);
 
+            System.out.println("Sending mail to user " + user.getEmail());
+            String mailServiceOutcome = emailService.sendMail(user);
+
+            System.out.println(mailServiceOutcome);
 
             return "User created! Please verify using provided mail id";
 

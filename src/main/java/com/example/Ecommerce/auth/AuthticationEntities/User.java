@@ -36,7 +36,6 @@ public class User implements UserDetails {
 
     private String phone;
 
-    private String provider;
 
     private String verificationCode;
 
