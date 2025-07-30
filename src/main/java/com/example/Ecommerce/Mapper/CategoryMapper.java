@@ -2,7 +2,7 @@ package com.example.Ecommerce.Mapper;
 
 
 import com.example.Ecommerce.Dto.CategoryDto;
-import com.example.Ecommerce.Model.Category;
+import com.example.Ecommerce.Entity.Category;
 import lombok.Builder;
 import lombok.Data;
 

@@ -1,19 +1,20 @@
-package com.example.Ecommerce.Model;
+package com.example.Ecommerce.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CategoryType {
-
+@Builder
+public class Category {
     @Id
     @GeneratedValue
     private UUID id;
@@ -27,9 +28,6 @@ public class CategoryType {
     @Column(nullable = false)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id",nullable = false)
-    @JsonIgnore
-    private Category category;
-
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    private List<CategoryType> categoryTypes;
 }

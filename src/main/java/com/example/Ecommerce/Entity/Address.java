@@ -1,4 +1,4 @@
-package com.example.Ecommerce.Model;
+package com.example.Ecommerce.Entity;
 
 
 import com.example.Ecommerce.auth.AuthticationEntities.User;

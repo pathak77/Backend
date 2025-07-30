@@ -4,7 +4,7 @@ package com.example.Ecommerce.Mapper;
 import com.example.Ecommerce.Dto.ProductDto;
 import com.example.Ecommerce.Dto.ProductResourceDto;
 import com.example.Ecommerce.Dto.ProductTypeDto;
-import com.example.Ecommerce.Model.*;
+import com.example.Ecommerce.Entity.*;
 import com.example.Ecommerce.Service.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

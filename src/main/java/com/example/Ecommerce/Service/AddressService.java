@@ -3,7 +3,7 @@ package com.example.Ecommerce.Service;
 
 
 import com.example.Ecommerce.Dto.AddressDto;
-import com.example.Ecommerce.Model.Address;
+import com.example.Ecommerce.Entity.Address;
 
 import java.util.List;
 

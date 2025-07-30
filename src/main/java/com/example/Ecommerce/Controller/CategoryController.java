@@ -1,7 +1,7 @@
 package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Dto.CategoryDto;
-import com.example.Ecommerce.Model.Category;
+import com.example.Ecommerce.Entity.Category;
 import com.example.Ecommerce.Service.CategoryServiceImpl;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;

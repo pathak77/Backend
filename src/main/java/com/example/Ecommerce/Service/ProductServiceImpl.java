@@ -4,7 +4,7 @@ package com.example.Ecommerce.Service;
 import com.example.Ecommerce.Dto.ProductDto;
 import com.example.Ecommerce.Exceptions.ProductNotFoundException;
 import com.example.Ecommerce.Mapper.ProductMapper;
-import com.example.Ecommerce.Model.Product;
+import com.example.Ecommerce.Entity.Product;
 import com.example.Ecommerce.Repo.CategoryRepo;
 import com.example.Ecommerce.Repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;

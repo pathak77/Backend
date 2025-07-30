@@ -3,7 +3,7 @@ package com.example.Ecommerce.Controller;
 
 import com.example.Ecommerce.Dto.ProductDto;
 import com.example.Ecommerce.Exceptions.ProductNotFoundException;
-import com.example.Ecommerce.Model.Product;
+import com.example.Ecommerce.Entity.Product;
 import com.example.Ecommerce.Service.ProductServiceImpl;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletResponse;

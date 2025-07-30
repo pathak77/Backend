@@ -3,8 +3,8 @@ package com.example.Ecommerce.Service;
 
 import com.example.Ecommerce.Dto.CategoryDto;
 import com.example.Ecommerce.Dto.CategoryTypeDto;
-import com.example.Ecommerce.Model.Category;
-import com.example.Ecommerce.Model.CategoryType;
+import com.example.Ecommerce.Entity.Category;
+import com.example.Ecommerce.Entity.CategoryType;
 
 import java.util.List;
 import java.util.UUID;

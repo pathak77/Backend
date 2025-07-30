@@ -1,6 +1,6 @@
 package com.example.Ecommerce.auth.Dto;
 
-import com.example.Ecommerce.Model.Address;
+import com.example.Ecommerce.Entity.Address;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

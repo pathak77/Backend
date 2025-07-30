@@ -1,5 +1,6 @@
 package com.example.Ecommerce.auth.AuthticationEntities;
-import com.example.Ecommerce.Model.Address;
+import com.example.Ecommerce.Entity.Address;
+import com.example.Ecommerce.Entity.Payment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -40,6 +41,9 @@ public class User implements UserDetails {
     private String verificationCode;
 
     private boolean enabled=false;
+
+    @OneToMany(mappedBy = "user")
+    private List<Payment> paymentList;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "Authority ",joinColumns = @JoinColumn(referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
