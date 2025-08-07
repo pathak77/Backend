@@ -17,6 +17,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -45,12 +47,13 @@ public class WebSecurityAuth {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( requests -> requests
                         .requestMatchers(HttpMethod.GET,"/products","/category").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register","/auth/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/auth/**").permitAll()
+                        .requestMatchers("/oauth2/**", "/login/**", "/logout/**").permitAll()
                         .requestMatchers("/oauth2/success").permitAll()
                         .anyRequest()
                         .authenticated())
-                       .oauth2Login(oauth2login-> oauth2login.defaultSuccessUrl("/oauth2/success").loginPage("/oauth2/authorization/google"))
+                       //.oauth2Login(oauth2login-> oauth2login.defaultSuccessUrl("/oauth2/success").loginPage("/oauth2/authorization/google"))
                         .addFilterBefore(new JWTAuthenticationFilter(jwtTokenHelper,userDetailsService), UsernamePasswordAuthenticationFilter.class)
                         .build();
     }
@@ -60,4 +63,6 @@ public class WebSecurityAuth {
     public PasswordEncoder passwordEncoder(){
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
+
+
 }
