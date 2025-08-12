@@ -2,6 +2,8 @@ package com.example.Ecommerce.Dto;
 
 import lombok.*;
 
+import java.util.UUID;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -10,7 +12,7 @@ import lombok.*;
 @Setter
 public class AddressDto {
 
-    private long address_id;
+    private UUID address_id;
 
     private String username;
 

@@ -23,7 +23,6 @@ public class Payment {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id")
     private User user;
-
     private String cardNumber;
     private LocalDate expiryDate ;
     private String cvv;

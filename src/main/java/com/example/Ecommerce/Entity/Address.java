@@ -5,18 +5,19 @@ import com.example.Ecommerce.auth.AuthticationEntities.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Entity
 @Table (name = "addressDetails")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Getter
-@Setter
+@Builder
 public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long address_id;
+    private UUID address_id;
 
     @ManyToOne
     @JoinColumn(name = "id",nullable = false)
@@ -27,5 +28,6 @@ public class Address {
     private String state;
     private String zip;
     private int phone;
+
 
 }
